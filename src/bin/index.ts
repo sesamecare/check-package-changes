@@ -35,7 +35,13 @@ async function run() {
   const tmp = path.join(os.tmpdir(), `npm-pack-tarball-${Date.now()}`);
   await fs.mkdir(tmp);
   try {
-    const tarballDirectory = await getTarball(targetPackage, tmp);
+    const tarballDirectory = await getTarball(targetPackage, tmp).catch((error) => {
+      if (error.status === 404) {
+        // Treat it as empty
+        return path.join(tmp, 'package');
+      }
+      throw error;
+    });
     const tarballFiles = await getGlobMatches(globs as string[], tarballDirectory);
     const localFiles = await getGlobMatches(globs as string[], argv.localDir);
 
@@ -46,11 +52,16 @@ async function run() {
 
     const { check = 'same' } = argv;
     if (same && check === 'same') {
+      if (argv.verbose) {
+        console.log('Files are the same, test passes');
+      }
       process.exit(0);
     }
     if (!same && check === 'diff') {
+      console.log('Files are different, test passes');
       process.exit(0);
     }
+    console.log(`Files are ${check === 'diff' ? 'the same' : 'different'}, test fails`);
     process.exit(1);
   } finally {
     await fs.rm(tmp, { recursive: true, force: true });

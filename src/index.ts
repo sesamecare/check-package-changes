@@ -5,6 +5,10 @@ import { spawn } from 'node:child_process';
 import { glob } from 'glob';
 import type { Path } from 'path-scurry';
 
+interface ErrorWithOutput extends Error {
+  output: string;
+}
+
 function executeCommand(command: string, args: string[], cwd?: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { cwd });
@@ -21,12 +25,14 @@ function executeCommand(command: string, args: string[], cwd?: string): Promise<
     });
 
     child.on('error', (error) => {
-      reject(error);
+      reject(Object.assign(error, { output: errorOutput }));
     });
 
     child.on('close', (code) => {
       if (code !== 0) {
-        reject(new Error(`${command} exited with code ${code}: ${errorOutput}`));
+        const error = new Error(`${command} exited with code ${code}`);
+        Object.assign(error, { output: errorOutput });
+        reject(error);
         return;
       }
       resolve(output.trim());
@@ -35,6 +41,7 @@ function executeCommand(command: string, args: string[], cwd?: string): Promise<
 }
 
 export async function getTarball(packageName: string, workingDirectory: string) {
+  try {
   const tar = await executeCommand(
     'npm',
     ['pack', packageName, '--pack-destination', workingDirectory],
@@ -42,6 +49,12 @@ export async function getTarball(packageName: string, workingDirectory: string) 
   );
   await executeCommand('tar', ['xzf', tar], workingDirectory);
   return path.join(workingDirectory, 'package');
+  } catch (error) {
+    if ((error as ErrorWithOutput).output?.includes('404 Not Found')) {
+      throw Object.assign(new Error(`Package ${packageName} not found`), { status: 404 });
+    }
+    throw error;
+  }
 }
 
 export async function getGlobMatches(globs: string[], cwd?: string) {
