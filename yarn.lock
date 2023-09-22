@@ -596,6 +596,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sesamecare-oss/check-package-changes@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@sesamecare-oss/check-package-changes@workspace:."
+  dependencies:
+    "@openapi-typescript-infra/coconfig": ^4.2.0
+    "@semantic-release/changelog": ^6.0.3
+    "@semantic-release/exec": ^6.0.3
+    "@semantic-release/git": ^10.0.1
+    "@types/minimist": ^1.2.2
+    "@types/node": ^20.6.3
+    "@typescript-eslint/eslint-plugin": latest
+    "@typescript-eslint/parser": ^6.7.2
+    coconfig: ^0.13.3
+    eslint: ^8.49.0
+    eslint-config-prettier: ^9.0.0
+    eslint-import-resolver-typescript: ^3.6.0
+    eslint-plugin-import: ^2.28.1
+    glob: ^10.3.5
+    libnpmpack: ^6.0.1
+    minimist: ^1.2.8
+    path-scurry: ^1.10.1
+    ts-node: ^10.9.1
+    tsconfig-paths: ^4.2.0
+    typescript: ^5.2.2
+    vitest: ^0.34.4
+  bin:
+    check-package-changes: build/bin/index.js
+  languageName: unknown
+  linkType: soft
+
 "@sigstore/bundle@npm:^2.1.0":
   version: 2.1.0
   resolution: "@sigstore/bundle@npm:2.1.0"
@@ -1384,36 +1414,6 @@ __metadata:
   checksum: d9d106504404b8addd1ee3f63f8c0eaa7cd962a1a28eb9c519b1c4a1dc7098be38007fc0060f045ee00f075fbb7a2a4f42abcf61d68323677e11ab98dc16042e
   languageName: node
   linkType: hard
-
-"check-package-changes@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "check-package-changes@workspace:."
-  dependencies:
-    "@openapi-typescript-infra/coconfig": ^4.2.0
-    "@semantic-release/changelog": ^6.0.3
-    "@semantic-release/exec": ^6.0.3
-    "@semantic-release/git": ^10.0.1
-    "@types/minimist": ^1.2.2
-    "@types/node": ^20.6.3
-    "@typescript-eslint/eslint-plugin": latest
-    "@typescript-eslint/parser": ^6.7.2
-    coconfig: ^0.13.3
-    eslint: ^8.49.0
-    eslint-config-prettier: ^9.0.0
-    eslint-import-resolver-typescript: ^3.6.0
-    eslint-plugin-import: ^2.28.1
-    glob: ^10.3.5
-    libnpmpack: ^6.0.1
-    minimist: ^1.2.8
-    path-scurry: ^1.10.1
-    ts-node: ^10.9.1
-    tsconfig-paths: ^4.2.0
-    typescript: ^5.2.2
-    vitest: ^0.34.4
-  bin:
-    check-package-changes: build/bin/index.js
-  languageName: unknown
-  linkType: soft
 
 "chownr@npm:^2.0.0":
   version: 2.0.0
