@@ -22,10 +22,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sesamecare/component-atoms.git"
+    "url": "git+https://github.com/sesamecare/check-package-changes.git"
   },
   "publishConfig": {
-    "registry": "https://us-central1-npm.pkg.dev/sesame-care-dev/npm-packages"
+    "access": "public"
   },
   "release": {
     "branches": [
