@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/sesamecare/check-package-changes/compare/v1.0.2...v1.0.3) (2023-09-24)
+
+
+### Bug Fixes
+
+* **npmrc:** add npmrc argument to try and fix private packages ([efe231a](https://github.com/sesamecare/check-package-changes/commit/efe231ac8598f9e6c276ac0a1590b4d3bfe47515))
+
 ## [1.0.2](https://github.com/sesamecare/check-package-changes/compare/v1.0.1...v1.0.2) (2023-09-24)
 
 
