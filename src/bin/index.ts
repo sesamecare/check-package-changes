@@ -45,6 +45,11 @@ async function run() {
       }
       throw error;
     });
+
+    if (argv.verbose) {
+      console.log(`Tarball extracted to ${tarballDirectory}`);
+    }
+
     const tarballFiles = await getGlobMatches(globs as string[], tarballDirectory);
     const localFiles = await getGlobMatches(globs as string[], argv.localDir);
 
