@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable no-console */
 import os from 'node:os';
 import fs from 'node:fs/promises';

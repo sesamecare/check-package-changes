@@ -6,7 +6,7 @@ code matches the currently published code or not.
 For example:
 
 ```
-npx @sesamecare-oss/check-package-changes --verbose --ignore-version --local-dir generated "dist/**" package.json spec.json
+npx @sesamecare-oss/check-package-changes my-package-name --verbose --ignore-version --local-dir generated "dist/**" package.json spec.json
 ```
 
 * `--verbose` will print out the name of any file that is not the same between the sources
