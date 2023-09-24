@@ -29,7 +29,7 @@ const argv = minimist<Argv>(process.argv.slice(2), {
     'local-dir': 'localDir',
     'ignore-version': 'ignoreVersion',
   },
-  boolean: ['help', 'verbose'],
+  boolean: ['help', 'verbose', 'ignoreVersion'],
 });
 
 const [targetPackage, ...globs] = argv._;
