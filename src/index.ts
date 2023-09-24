@@ -40,15 +40,15 @@ function executeCommand(command: string, args: string[], cwd?: string): Promise<
   });
 }
 
-export async function getTarball(packageName: string, workingDirectory: string) {
+export async function getTarball(packageName: string, workingDirectory: string, npmrc?: string) {
   try {
-  const tar = await executeCommand(
-    'npm',
-    ['pack', packageName, '--pack-destination', workingDirectory],
-    workingDirectory,
-  );
-  await executeCommand('tar', ['xzf', tar], workingDirectory);
-  return path.join(workingDirectory, 'package');
+    const args = ['pack', packageName, '--pack-destination', workingDirectory];
+    if (npmrc) {
+      args.push('--userconfig', npmrc);
+    }
+    const tar = await executeCommand('npm', args, workingDirectory);
+    await executeCommand('tar', ['xzf', tar], workingDirectory);
+    return path.join(workingDirectory, 'package');
   } catch (error) {
     if ((error as ErrorWithOutput).output?.includes('404 Not Found')) {
       throw Object.assign(new Error(`Package ${packageName} not found`), { status: 404 });

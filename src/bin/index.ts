@@ -18,6 +18,7 @@ interface Argv {
   check?: 'same' | 'diff';
   ignoreVersion?: boolean;
   localDir?: string;
+  npmrc?: string;
 }
 
 const argv = minimist<Argv>(process.argv.slice(2), {
@@ -37,7 +38,7 @@ async function run() {
   const tmp = path.join(os.tmpdir(), `npm-pack-tarball-${Date.now()}`);
   await fs.mkdir(tmp);
   try {
-    const tarballDirectory = await getTarball(targetPackage, tmp).catch((error) => {
+    const tarballDirectory = await getTarball(targetPackage, tmp, argv.npmrc).catch((error) => {
       if (error.status === 404) {
         // Treat it as empty
         return path.join(tmp, 'package');
