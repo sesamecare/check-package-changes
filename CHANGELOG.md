@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/sesamecare/check-package-changes/compare/v1.0.4...v1.0.5) (2023-09-24)
+
+
+### Bug Fixes
+
+* **debug:** log file list when verbose ([e9a6c51](https://github.com/sesamecare/check-package-changes/commit/e9a6c51dc0ec5eadf4ea8fdd4e8455f7b8696d08))
+
 ## [1.0.4](https://github.com/sesamecare/check-package-changes/compare/v1.0.3...v1.0.4) (2023-09-24)
 
 
