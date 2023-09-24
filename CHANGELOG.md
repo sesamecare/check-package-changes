@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/sesamecare/check-package-changes/compare/v1.0.3...v1.0.4) (2023-09-24)
+
+
+### Bug Fixes
+
+* **cli:** make ignoreVersion a boolean ([124fb0c](https://github.com/sesamecare/check-package-changes/commit/124fb0c15ea0d07be5744b959bf9315b63c2b3d7))
+
 ## [1.0.3](https://github.com/sesamecare/check-package-changes/compare/v1.0.2...v1.0.3) (2023-09-24)
 
 
