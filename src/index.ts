@@ -102,6 +102,10 @@ export async function compareFiles(
   for (const file of allFiles) {
     const localFile = localFilesMap.get(file);
     const publishedFile = publishedFilesMap.get(file);
+    if (options.verbose) {
+      console.log('Local files:', localFilesMap.keys());
+      console.log('Published files:', publishedFilesMap.keys());
+    }
     if (!localFile || !publishedFile) {
       same = false;
       if (!options.verbose) {
