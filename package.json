@@ -1,6 +1,6 @@
 {
   "name": "@sesamecare-oss/check-package-changes",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Compare a published package against local files",
   "type": "module",
   "main": "build/index.js",

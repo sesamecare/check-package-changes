@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/sesamecare/check-package-changes/compare/v1.0.6...v1.0.7) (2023-09-25)
+
+
+### Bug Fixes
+
+* **debug:** print tar output ([df5fc10](https://github.com/sesamecare/check-package-changes/commit/df5fc10cab4db4b6434484b0888abdf6c72ba28a))
+
 ## [1.0.6](https://github.com/sesamecare/check-package-changes/compare/v1.0.5...v1.0.6) (2023-09-24)
 
 
