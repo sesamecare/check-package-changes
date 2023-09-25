@@ -26,10 +26,11 @@ const argv = minimist<Argv>(process.argv.slice(2), {
     h: 'help',
     v: 'verbose',
     c: 'check',
+    d: 'debug',
     'local-dir': 'localDir',
     'ignore-version': 'ignoreVersion',
   },
-  boolean: ['help', 'verbose', 'ignoreVersion'],
+  boolean: ['debug', 'help', 'verbose', 'ignoreVersion'],
 });
 
 const [targetPackage, ...globs] = argv._;
@@ -40,7 +41,7 @@ async function run() {
   try {
     const tarballDirectory = await getTarball(targetPackage, tmp, {
       npmrc: argv.npmrc,
-      verbose: argv.verbose,
+      debug: argv.debug,
     }).catch((error) => {
       if (error.status === 404) {
         // Treat it as empty
@@ -49,7 +50,7 @@ async function run() {
       throw error;
     });
 
-    if (argv.verbose) {
+    if (argv.debug) {
       console.log(`Tarball extracted to ${tarballDirectory}`);
     }
 
@@ -59,6 +60,7 @@ async function run() {
     const same = await compareFiles(localFiles, tarballFiles, {
       ignorePackageVersion: argv.ignoreVersion,
       verbose: argv.verbose,
+      debug: argv.debug,
     });
 
     const { check = 'same' } = argv;

@@ -9,10 +9,17 @@ interface ErrorWithOutput extends Error {
   output: string;
 }
 
-function executeCommand(command: string, args: string[], { cwd, verbose }: {
-  cwd?: string;
-  verbose?: boolean;
-}): Promise<string> {
+function executeCommand(
+  command: string,
+  args: string[],
+  {
+    cwd,
+    debug,
+  }: {
+    cwd?: string;
+    debug?: boolean;
+  },
+): Promise<string> {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { cwd });
 
@@ -20,14 +27,14 @@ function executeCommand(command: string, args: string[], { cwd, verbose }: {
     let errorOutput = '';
 
     child.stdout.on('data', (data) => {
-      if (verbose) {
+      if (debug) {
         console.error(data?.toString());
       }
       output += data;
     });
 
     child.stderr.on('data', (data) => {
-      if (verbose) {
+      if (debug) {
         console.error(data?.toString());
       }
       errorOutput += data;
@@ -52,14 +59,15 @@ function executeCommand(command: string, args: string[], { cwd, verbose }: {
 export async function getTarball(
   packageName: string,
   workingDirectory: string,
-  { npmrc, verbose }: { npmrc?: string; verbose?: boolean; } = {}) {
+  { npmrc, debug }: { npmrc?: string; debug?: boolean } = {},
+) {
   try {
     const args = ['pack', packageName, '--pack-destination', workingDirectory];
     if (npmrc) {
       args.push('--userconfig', path.resolve(npmrc));
     }
-    const tar = await executeCommand('npm', args, { cwd: workingDirectory, verbose });
-    await executeCommand('tar', ['xvzf', tar], { cwd: workingDirectory, verbose });
+    const tar = await executeCommand('npm', args, { cwd: workingDirectory, debug });
+    await executeCommand('tar', ['xvzf', tar], { cwd: workingDirectory, debug });
     return path.join(workingDirectory, 'package');
   } catch (error) {
     if ((error as ErrorWithOutput).output?.includes('404 Not Found')) {
@@ -98,6 +106,7 @@ export async function compareFiles(
   options: {
     ignorePackageVersion?: boolean;
     verbose?: boolean;
+    debug?: boolean;
   } = {},
 ) {
   // Compare the contents of each file in localFiles to the corresponding file in publishedFiles
@@ -111,7 +120,7 @@ export async function compareFiles(
   const allFiles = new Set([...localFilesMap.keys(), ...publishedFilesMap.keys()]);
   let same = true;
 
-  if (options.verbose) {
+  if (options.debug) {
     console.log('Local files:', localFilesMap.keys());
     console.log('Published files:', publishedFilesMap.keys());
   }
