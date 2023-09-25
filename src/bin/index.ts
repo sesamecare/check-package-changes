@@ -38,7 +38,10 @@ async function run() {
   const tmp = path.join(os.tmpdir(), `npm-pack-tarball-${Date.now()}`);
   await fs.mkdir(tmp);
   try {
-    const tarballDirectory = await getTarball(targetPackage, tmp, argv.npmrc).catch((error) => {
+    const tarballDirectory = await getTarball(targetPackage, tmp, {
+      npmrc: argv.npmrc,
+      verbose: argv.verbose,
+    }).catch((error) => {
       if (error.status === 404) {
         // Treat it as empty
         return path.join(tmp, 'package');
