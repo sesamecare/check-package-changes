@@ -56,7 +56,7 @@ export async function getTarball(
   try {
     const args = ['pack', packageName, '--pack-destination', workingDirectory];
     if (npmrc) {
-      args.push('--userconfig', npmrc);
+      args.push('--userconfig', path.resolve(npmrc));
     }
     const tar = await executeCommand('npm', args, { cwd: workingDirectory, verbose });
     await executeCommand('tar', ['xvzf', tar], { cwd: workingDirectory, verbose });
