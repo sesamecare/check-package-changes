@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/sesamecare/check-package-changes/compare/v1.0.9...v1.1.0) (2023-09-25)
+
+
+### Features
+
+* **trunk:** add trunk linter, split debug and verbose options ([0e79ed1](https://github.com/sesamecare/check-package-changes/commit/0e79ed1f3714d0075275b87e6d2d465b52007ea8))
+
 ## [1.0.9](https://github.com/sesamecare/check-package-changes/compare/v1.0.8...v1.0.9) (2023-09-25)
 
 ### Bug Fixes
