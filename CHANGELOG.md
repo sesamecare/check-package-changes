@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/sesamecare/check-package-changes/compare/v1.0.7...v1.0.8) (2023-09-25)
+
+
+### Bug Fixes
+
+* **log:** log output as it happens ([f9e5e2b](https://github.com/sesamecare/check-package-changes/commit/f9e5e2b1227392d9080e7116e9f140a26cd6020e))
+
 ## [1.0.7](https://github.com/sesamecare/check-package-changes/compare/v1.0.6...v1.0.7) (2023-09-25)
 
 
