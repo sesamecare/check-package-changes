@@ -9,7 +9,10 @@ interface ErrorWithOutput extends Error {
   output: string;
 }
 
-function executeCommand(command: string, args: string[], cwd?: string): Promise<string> {
+function executeCommand(command: string, args: string[], { cwd, verbose }: {
+  cwd?: string;
+  verbose?: boolean;
+}): Promise<string> {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { cwd });
 
@@ -17,10 +20,16 @@ function executeCommand(command: string, args: string[], cwd?: string): Promise<
     let errorOutput = '';
 
     child.stdout.on('data', (data) => {
+      if (verbose) {
+        console.error(data?.toString());
+      }
       output += data;
     });
 
     child.stderr.on('data', (data) => {
+      if (verbose) {
+        console.error(data?.toString());
+      }
       errorOutput += data;
     });
 
@@ -49,11 +58,8 @@ export async function getTarball(
     if (npmrc) {
       args.push('--userconfig', npmrc);
     }
-    const tar = await executeCommand('npm', args, workingDirectory);
-    const tarout = await executeCommand('tar', ['xvzf', tar], workingDirectory);
-    if (verbose) {
-      console.log(tarout);
-    }
+    const tar = await executeCommand('npm', args, { cwd: workingDirectory, verbose });
+    await executeCommand('tar', ['xvzf', tar], { cwd: workingDirectory, verbose });
     return path.join(workingDirectory, 'package');
   } catch (error) {
     if ((error as ErrorWithOutput).output?.includes('404 Not Found')) {
