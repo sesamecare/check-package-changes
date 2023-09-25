@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/sesamecare/check-package-changes/compare/v1.0.8...v1.0.9) (2023-09-25)
+
+
+### Bug Fixes
+
+* **path:** resolve npmrc path ([c67fb4d](https://github.com/sesamecare/check-package-changes/commit/c67fb4d532caddf2538615e800544e1a5facaa99))
+
 ## [1.0.8](https://github.com/sesamecare/check-package-changes/compare/v1.0.7...v1.0.8) (2023-09-25)
 
 
