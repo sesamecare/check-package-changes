@@ -2,7 +2,7 @@ name: Ensure title contains JIRA ticket
 on:
   pull_request:
     branches:
-      - master
+      - main
     types:
       - opened
       - synchronize
