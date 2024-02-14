@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/sesamecare/check-package-changes/compare/v1.1.0...v1.1.1) (2024-02-14)
+
+
+### Reverts
+
+* Revert "PI-3857 - ensure PR title contains jira ticket number (#3)" (#4) ([23dbbf4](https://github.com/sesamecare/check-package-changes/commit/23dbbf4a947dcfddb7f122b284961479ae8d3ced)), closes [#3](https://github.com/sesamecare/check-package-changes/issues/3) [#4](https://github.com/sesamecare/check-package-changes/issues/4)
+
 # [1.1.0](https://github.com/sesamecare/check-package-changes/compare/v1.0.9...v1.1.0) (2023-09-25)
 
 
